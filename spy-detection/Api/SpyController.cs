@@ -104,20 +104,20 @@ namespace spy_detection.Api
         /// checks if the spy code exists in the message
         /// </summary>
         /// <param name="message">message to check in</param>
-        /// <param name="name">name of the spy to check for in the message for it's code</param>
         /// <returns></returns>
         [HttpGet]
         [SwaggerOperation(Produces = new[] { "application/json" })]
         [ProducesResponseType(typeof(SpyDetectionResult), (int)HttpStatusCode.OK)]
         [ProducesResponseType(typeof(void), (int)HttpStatusCode.InternalServerError)]
         [Route("detection")]
-        public async Task<IActionResult> DetectAsync(int[] message, string name)
+        public async Task<IActionResult> DetectAsync(int[] message)
         {
-            var contains = await _spyService.DetectSpyAsync(message, name);
+            var spy = await _spyService.DetectSpyAsync(message);
 
             return Ok(new SpyDetectionResult
             {
-                Contains = contains
+                Contains = null != spy,
+                Spy = spy
             });
         }
     }

@@ -105,20 +105,20 @@ namespace spy_detection
             //
             // Swagger support
             //
-            services.AddSwaggerGen(c =>
-            {
-                // Swagger meta information
-                c.SwaggerDoc("v1", new Info { Title = Configuration["Application:Title"], Description = Configuration["Application:Description"], Version = "v1" });
+            //services.AddSwaggerGen(c =>
+            //{
+            //    // Swagger meta information
+            //    c.SwaggerDoc("v1", new Info { Title = Configuration["Application:Title"], Description = Configuration["Application:Description"], Version = "v1" });
 
-                var filePath = Path.Combine(PlatformServices.Default.Application.ApplicationBasePath, "spy-detection.xml");
-                c.IncludeXmlComments(filePath);
+            //    var filePath = Path.Combine(PlatformServices.Default.Application.ApplicationBasePath, "spy-detection.xml");
+            //    c.IncludeXmlComments(filePath);
 
-                c.DescribeAllEnumsAsStrings();
+            //    c.DescribeAllEnumsAsStrings();
 
-                c.EnableAnnotations();
-                c.ExampleFilters();
-            })
-            .AddSwaggerExamples();
+            //    c.EnableAnnotations();
+            //    c.ExampleFilters();
+            //})
+            //.AddSwaggerExamples();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

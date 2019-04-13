@@ -107,26 +107,16 @@ namespace spy_detection.Services
             return existing;
         }
 
-        public async Task<bool> DetectSpyAsync(int[] message, string name)
+        public async Task<Spy> DetectSpyAsync(int[] message)
         {
             if (null == message || !message.Any())
             {
                 throw new ArgumentException("message is missing or invlid");
             }
 
-            if (string.IsNullOrWhiteSpace(name))
-            {
-                throw new ArgumentException("name is missing or invlid");
-            }
-
-            var spy = await _repository.GetAllAsQueryable().FirstOrDefaultAsync(sp => sp.Name == name);
-            if (null == spy)
-            {
-                throw new ArgumentException($"spy {name} is not found");
-            }
-
-            var contains = _spyDetector.ContainsSpy(message, spy.Code);
-            return contains;
+            var spies = await _repository.ToListAsync();
+            var matchedSpy = spies.FirstOrDefault(spy => _spyDetector.ContainsSpy(message, spy.Code));
+            return matchedSpy;
         }
     }
 }
