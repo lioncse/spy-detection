@@ -1,0 +1,11 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+/spy-detection/obj
+/spy-detection/bin/Debug/netcoreapp2.2
+/.vs
+*.user
+/spy-detection/bin/Release/netcoreapp2.2
+/spy-detection.tests/obj
+/spy-detection.tests/bin/Debug/netcoreapp2.2
